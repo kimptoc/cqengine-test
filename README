@@ -1,0 +1,19 @@
+
+With secondsForCreation of 1
+
+CQEngine Test - starting
+cars created = 180600
+elapsed = 239.1547ms for 18060 queries. Time per query:0.0132ms
+cars created = 180600
+elapsed = 103.0784ms for 18060 queries. Time per query:0.0057ms
+CQEngine Test - done
+
+For 10 seconds
+
+CQEngine Test - starting
+cars created = 1715055
+elapsed = 619.0487ms for 171505 queries. Time per query:0.0036ms
+cars created = 1715055
+elapsed = 595.7414ms for 171505 queries. Time per query:0.0035ms
+CQEngine Test - done
+
