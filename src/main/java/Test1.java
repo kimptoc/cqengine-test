@@ -73,23 +73,35 @@ public class Test1 {
         }
         System.out.println("cars created = " + cars.size());
 
+        // warmup
+        doSomeQueries(cars, query1);
+
         long start = System.nanoTime();
-        int numFound = -1;
-        int numQueries = cars.size() / 10;
-        for (int i = 0; i< numQueries; i++)
-        {
-            ResultSet<T> resultSet = cars.retrieve(query1);
-            if (numFound == -1)
-            {
-                numFound = resultSet.size();
-            } else {
-                if (numFound != resultSet.size()) throw new RuntimeException("Expected "+numFound+" but got "+resultSet.size());
-            }
-        }
+        int numQueries = doSomeQueries(cars, query1);
         long elapsed = System.nanoTime() - start;
         double elapsedMillis = elapsed / 1000000.0;
         System.out.println("elapsed = " + formatter.format(elapsedMillis) +"ms for "+ numQueries +" queries. Time per query:"+ formatter.format(elapsedMillis/numQueries)+"ms");
         return cars.size();
+    }
+
+    private static <T> int doSomeQueries(IndexedCollection<T> cars, Query<T> query1) {
+        int numFound = -1;
+        int numQueries = cars.size() / 1000;
+        for (int i = 0; i< numQueries; i++)
+        {
+            ResultSet<T> resultSet = cars.retrieve(query1);
+            int resultSetSize = 0;
+            for (T entity : resultSet) {
+                resultSetSize++;
+            }
+            if (numFound == -1)
+            {
+                numFound = resultSetSize;
+            } else {
+                if (numFound != resultSetSize) throw new RuntimeException("Expected "+numFound+" but got "+resultSetSize);
+            }
+        }
+        return numQueries;
     }
 
     private static void addField(Map car, String colour, String value) {
