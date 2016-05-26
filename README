@@ -1,3 +1,30 @@
+10 seconds, dedup, slow counter
+
+CQEngine Test - starting
+cars created = 3152792
+elapsed = 91043.7747ms for 315 queries. Time per query:289.0279ms
+cars created = 3152792
+elapsed = 175876.0640ms for 315 queries. Time per query:558.3367ms
+CQEngine Test - done
+
+
+With seconds of 2, manually counting results and dedup option
+
+CQEngine Test - starting
+cars created = 869759
+elapsed = 6238.3678ms for 86 queries. Time per query:72.5392ms
+cars created = 869759
+elapsed = 10456.3116ms for 86 queries. Time per query:121.5850ms
+CQEngine Test - done
+
+With seconds of 2, using size count option
+CQEngine Test - starting
+cars created = 813619
+elapsed = 5888.2645ms for 81 queries. Time per query:72.6946ms
+cars created = 813619
+elapsed = 9492.9913ms for 81 queries. Time per query:117.1974ms
+CQEngine Test - done
+
 
 With secondsForCreation of 1
 
