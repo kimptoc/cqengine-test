@@ -1,3 +1,14 @@
+Test 2 - not too many entries, but lots of queries
+CQEngine Test2 - lots of queries - starting
+CQEngine Test - using Car objects
+cars created = 10000
+elapsed = 28057.6352ms for 100000 queries. Time per query:0.2806ms
+CQEngine Test - using Map objects
+cars created = 10000
+elapsed = 44376.5772ms for 100000 queries. Time per query:0.4438ms
+CQEngine Test - done
+
+
 10 seconds, dedup, slow counter
 
 CQEngine Test - starting
