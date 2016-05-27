@@ -22,13 +22,13 @@ public class Car {
         engineSize = (Double) m.get("engineSize");
     }
 
-    static Attribute COLOUR = new SimpleNullableAttribute<Car, String>("colour") {
+    static Attribute COLOUR = new SimpleAttribute<Car, String>("colour") {
         public String getValue(Car car, QueryOptions queryOptions) { return car.colour; }
     };
-    static Attribute MAKE = new SimpleNullableAttribute<Car, String>("make") {
+    static Attribute MAKE = new SimpleAttribute<Car, String>("make") {
         public String getValue(Car car, QueryOptions queryOptions) { return car.make; }
     };
-    static Attribute MODEL = new SimpleNullableAttribute<Car, String>("model") {
+    static Attribute MODEL = new SimpleAttribute<Car, String>("model") {
         public String getValue(Car car, QueryOptions queryOptions) { return car.model; }
     };
 }
