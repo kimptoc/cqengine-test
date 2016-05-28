@@ -1,3 +1,39 @@
+Test with new MapEntity - seems that KeyMapEntity adds little value.
+But MapEntity is much better than Map - without optimising equal.
+
+CQEngine Test2 - lots of queries - starting
+CQEngine Test - using Car objects
+cars created = 20000
+elapsed = 8742.2965ms for 20000 queries. Time per query:0.4371ms
+
+CQEngine Test - using Car objects/nullable attribs
+cars created = 20000
+elapsed = 8501.2650ms for 20000 queries. Time per query:0.4251ms
+
+CQEngine Test - using Map objects
+cars created = 20000
+elapsed = 22001.8942ms for 20000 queries. Time per query:1.1001ms
+
+CQEngine Test - using Map objects with nullable attribs
+cars created = 20000
+elapsed = 23827.5000ms for 20000 queries. Time per query:1.1914ms
+
+CQEngine Test - using Map objects and MapAttribs
+cars created = 20000
+elapsed = 21190.1307ms for 20000 queries. Time per query:1.0595ms
+
+CQEngine Test - using MapEntity objects and MapEntityAttribs
+cars created = 20000
+elapsed = 9602.5512ms for 20000 queries. Time per query:0.4801ms
+
+CQEngine Test - using KeyedMapEntity objects and MapEntityAttribs
+cars created = 20000
+elapsed = 9505.1843ms for 20000 queries. Time per query:0.4753ms
+
+CQEngine Test - done
+
+---
+
 Test 3 - more tests, using latest map attrib code - v.slow with MapAttribs
 
 CQEngine Test2 - lots of queries - starting

@@ -9,6 +9,8 @@ import java.util.Map;
  * Created by kimptoc on 25/05/2016.
  */
 public class Car {
+    static int lastId = 0;
+    int id;
     String colour;
     Double engineSize;
     String make;
@@ -16,6 +18,7 @@ public class Car {
 
     Car(Map m)
     {
+        id = ++lastId;
         colour = (String) m.get("colour");
         make = (String) m.get("make");
         model = (String) m.get("model");
