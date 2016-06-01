@@ -1,36 +1,34 @@
 Test with new MapEntity - seems that KeyMapEntity adds little value.
 But MapEntity is much better than Map - without optimising equal.
 
-CQEngine Test2 - lots of queries - starting
-CQEngine Test - using Car objects
-cars created = 20000
-elapsed = 8742.2965ms for 20000 queries. Time per query:0.4371ms
+11:23:35>1)CQEngine Test - using Car objects
+11:23:35>cars created = 20000
+11:23:41>elapsed = 6272.9587ms for 20000 queries. Time per query:0.3136ms
 
-CQEngine Test - using Car objects/nullable attribs
-cars created = 20000
-elapsed = 8501.2650ms for 20000 queries. Time per query:0.4251ms
+11:23:41>1)CQEngine Test - using Car objects/nullable attribs
+11:23:41>cars created = 20000
+11:23:47>elapsed = 6082.9562ms for 20000 queries. Time per query:0.3041ms
 
-CQEngine Test - using Map objects
-cars created = 20000
-elapsed = 22001.8942ms for 20000 queries. Time per query:1.1001ms
+11:23:47>1)CQEngine Test - using Map objects
+11:23:47>cars created = 20000
+11:24:00>elapsed = 13103.5492ms for 20000 queries. Time per query:0.6552ms
 
-CQEngine Test - using Map objects with nullable attribs
-cars created = 20000
-elapsed = 23827.5000ms for 20000 queries. Time per query:1.1914ms
+11:24:00>1)CQEngine Test - using Map objects with nullable attribs
+11:24:00>cars created = 20000
+11:24:13>elapsed = 12980.0660ms for 20000 queries. Time per query:0.6490ms
 
-CQEngine Test - using Map objects and MapAttribs
-cars created = 20000
-elapsed = 21190.1307ms for 20000 queries. Time per query:1.0595ms
+11:24:13>1)CQEngine Test - using Map objects and MapAttribs
+11:24:13>cars created = 20000
+11:24:26>elapsed = 13411.4931ms for 20000 queries. Time per query:0.6706ms
 
-CQEngine Test - using MapEntity objects and MapEntityAttribs
-cars created = 20000
-elapsed = 9602.5512ms for 20000 queries. Time per query:0.4801ms
+11:24:26>1)CQEngine Test - using MapEntity objects and MapEntityAttribs
+11:24:27>cars created = 20000
+11:24:34>elapsed = 7081.2452ms for 20000 queries. Time per query:0.3541ms
 
-CQEngine Test - using KeyedMapEntity objects and MapEntityAttribs
-cars created = 20000
-elapsed = 9505.1843ms for 20000 queries. Time per query:0.4753ms
+11:24:34>1)CQEngine Test - using KeyedMapEntity objects and MapEntityAttribs
+11:24:34>cars created = 20000
+11:24:40>elapsed = 6842.9486ms for 20000 queries. Time per query:0.3421ms
 
-CQEngine Test - done
 
 ---
 

@@ -3,7 +3,6 @@ import com.googlecode.cqengine.IndexedCollection;
 import com.googlecode.cqengine.attribute.Attribute;
 import com.googlecode.cqengine.attribute.SimpleAttribute;
 import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
-import com.googlecode.cqengine.attribute.SimpleNullableMapAttribute;
 import com.googlecode.cqengine.entity.KeyedMapEntity;
 import com.googlecode.cqengine.entity.MapEntity;
 import com.googlecode.cqengine.index.hash.HashIndex;
@@ -13,7 +12,9 @@ import com.googlecode.cqengine.query.option.DeduplicationStrategy;
 import com.googlecode.cqengine.query.option.QueryOptions;
 import com.googlecode.cqengine.resultset.ResultSet;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -39,7 +40,7 @@ public class Test2 {
         for (int j = 0; j <= warmupLoops; j++) {
             if (j == warmupLoops) loggingEnabled = true;
             {
-                log("CQEngine Test - using Car objects");
+                logForced(j+")CQEngine Test - using Car objects");
                 IndexedCollection<Car> cars = new ConcurrentIndexedCollection<>();
 
                 cars.addIndex(HashIndex.onAttribute(Car.COLOUR));
@@ -49,7 +50,7 @@ public class Test2 {
                 testSize = testCollection(cars, Car::new, or(equal(Car.MAKE, "Ford"), equal(Car.COLOUR, "Red")), -1);
             }
             {
-                log("CQEngine Test - using Car objects/nullable attribs");
+                logForced(j+")CQEngine Test - using Car objects/nullable attribs");
                 IndexedCollection<CarNullableAttribs> cars = new ConcurrentIndexedCollection<>();
 
                 cars.addIndex(HashIndex.onAttribute(CarNullableAttribs.COLOUR));
@@ -59,7 +60,7 @@ public class Test2 {
                 testSize = testCollection(cars, CarNullableAttribs::new, or(equal(CarNullableAttribs.MAKE, "Ford"), equal(CarNullableAttribs.COLOUR, "Red")), -1);
             }
             {
-                log("CQEngine Test - using Map objects");
+                logForced(j+")CQEngine Test - using Map objects");
                 IndexedCollection<Map> cars = new ConcurrentIndexedCollection<>();
 
                 cars.addIndex(HashIndex.onAttribute(getAttrib("make")));
@@ -69,7 +70,7 @@ public class Test2 {
                 testCollection(cars, (m) -> m, or(equal(getAttrib("make"), "Ford"), equal(getAttrib("colour"), "Red")), testSize);
             }
             {
-                log("CQEngine Test - using Map objects with nullable attribs");
+                logForced(j+")CQEngine Test - using Map objects with nullable attribs");
                 IndexedCollection<Map> cars = new ConcurrentIndexedCollection<>();
 
                 cars.addIndex(HashIndex.onAttribute(getNullableAttrib("make")));
@@ -79,7 +80,7 @@ public class Test2 {
                 testCollection(cars, (m) -> m, or(equal(getAttrib("make"), "Ford"), equal(getAttrib("colour"), "Red")), testSize);
             }
             {
-                log("CQEngine Test - using Map objects and MapAttribs");
+                logForced(j+")CQEngine Test - using Map objects and MapAttribs");
                 IndexedCollection<Map> cars = new ConcurrentIndexedCollection<>();
 
                 Attribute<Map, String> makeAttrib = mapAttribute("make", String.class);
@@ -92,7 +93,7 @@ public class Test2 {
                 testCollection(cars, (m) -> m, or(equal(makeAttrib, "Ford"), equal(colourAttrib, "Red")), testSize);
             }
             {
-                log("CQEngine Test - using MapEntity objects and MapEntityAttribs");
+                logForced(j+")CQEngine Test - using MapEntity objects and MapEntityAttribs");
                 IndexedCollection<MapEntity> cars = new ConcurrentIndexedCollection<>();
 
                 Attribute<MapEntity, String> makeAttrib = mapEntityAttribute("make", String.class);
@@ -106,7 +107,7 @@ public class Test2 {
                         or(equal(makeAttrib, "Ford"), equal(colourAttrib, "Red")), testSize);
             }
             {
-                log("CQEngine Test - using KeyedMapEntity objects and MapEntityAttribs");
+                logForced(j+")CQEngine Test - using KeyedMapEntity objects and MapEntityAttribs");
                 IndexedCollection<KeyedMapEntity> cars = new ConcurrentIndexedCollection<>();
 
                 Attribute<KeyedMapEntity, String> makeAttrib = keyedMapEntityAttribute("make", String.class);
@@ -124,8 +125,22 @@ public class Test2 {
 
     }
 
+    private static void logForced(String m) {
+        log(m, true);
+    }
+
     private static void log(String m) {
-        if (loggingEnabled) System.out.println(m);
+        log(m, false);
+    }
+
+    private static DateFormat timestampFormat = DateFormat.getTimeInstance();
+
+    private static void log(String m, boolean forceLogging) {
+        if (loggingEnabled || forceLogging) {
+
+            String timestamp = timestampFormat.format(new Date());
+            System.out.println(timestamp +">" + m);
+        }
     }
 
     private static DecimalFormat formatter = new DecimalFormat("0.0000");
