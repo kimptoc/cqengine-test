@@ -19,11 +19,14 @@ public class TestUpdateCarBase extends TestUpdateBaseBase {
 
         new Thread(new CarUpdater(ic)).start();
 
-        ExecutorService pool = Executors.newFixedThreadPool(15);
+        ExecutorService pool = Executors.newFixedThreadPool(30);
 
         Future<Boolean> result1 = pool.submit(new CarConsumer(ic));
         Future<Boolean> result2 = pool.submit(new CarConsumer(ic));
         Future<Boolean> result3 = pool.submit(new CarConsumer(ic));
+        Future<Boolean> result4 = pool.submit(new CarConsumer(ic));
+        Future<Boolean> result5 = pool.submit(new CarConsumer(ic));
+        Future<Boolean> result6 = pool.submit(new CarConsumer(ic));
 
         endOfTest(result1, result2, result3);
     }

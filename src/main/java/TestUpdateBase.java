@@ -24,12 +24,12 @@ public class TestUpdateBase extends TestUpdateBaseBase {
 
         new Thread(new Updater(ic)).start();
 
-        ExecutorService pool = Executors.newFixedThreadPool(1);
+        ExecutorService pool = Executors.newFixedThreadPool(5);
 
         Future<Boolean> result1 = pool.submit(new Consumer(ic));
-//        Future<Boolean> result2 = pool.submit(new Consumer(ic));
-//        Future<Boolean> result3 = pool.submit(new Consumer(ic));
-//
-//        endOfTest(result1, result2, result3);
+        Future<Boolean> result2 = pool.submit(new Consumer(ic));
+        Future<Boolean> result3 = pool.submit(new Consumer(ic));
+
+        endOfTest(result1, result2, result3);
     }
 }

@@ -44,8 +44,10 @@ public class Updater implements Runnable {
             m.put("Version", Constants.VERSION_GENERATOR.incrementAndGet());
 
             ResultSet<Map> existingItems = coll.retrieve(equal(attribute, Constants.ID));
+            Map map = existingItems.uniqueResult();
+            existingItems.close();
             coll.update(
-                    Collections.singleton(existingItems.uniqueResult()),
+                    Collections.singleton(map),
                     Collections.singleton(m));
             try {
                 Thread.sleep(2);
