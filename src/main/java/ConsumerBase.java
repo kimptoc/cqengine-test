@@ -17,38 +17,42 @@ public abstract class ConsumerBase implements Callable<Boolean> {
 
     abstract ResultSet doQuery();
 
-        @Override
+    @Override
     public Boolean call() throws Exception {
         boolean nullEncountered = false;
         long testsPassed = 0;
         long testsFailed = 0;
         for (int i = 0; i < 5000; i++) {
+            ResultSet result = null;
             try {
-            if (i%100 == 0) System.out.print(".");
+                if (i % 100 == 0) System.out.print(".");
 
 //            if (coll.size() == 0) System.out.println("Collection is empty!");
-            ResultSet result = doQuery();
+                result = doQuery();
 
-            if (result == null) {
-                System.out.println("null result");
-                nullEncountered = true;
-            } else if (result.isEmpty()) {
-                testsFailed++;
-                System.out.println("empty result:" + result+", coll size:"+coll.size()+", tests passed:"+testsPassed+", failed:"+testsFailed);
-                nullEncountered = true;
+                if (result == null) {
+                    System.out.println("null result");
+                    nullEncountered = true;
+                } else if (result.isEmpty()) {
+                    testsFailed++;
+                    System.out.println("empty result:" + result + ", coll size:" + coll.size() + ", tests passed:" + testsPassed + ", failed:" + testsFailed);
+                    nullEncountered = true;
 //            } else if (result.uniqueResult().id == 0){
 //                System.out.println("incomplete result:"+result);
 //                nullEncountered=true;
-            } else {
-                testsPassed++;
+                } else {
+                    testsPassed++;
 //                System.out.println("result is good:"+result);
-            }
+                }
 
-            if (result != null) result.close();
 
                 sleep(2);
             } catch (Throwable e) {
                 e.printStackTrace();
+
+            } finally {
+                if (result != null) result.close();
+
             }
         }
 
