@@ -23,7 +23,8 @@ public abstract class ConsumerBase implements Callable<Boolean> {
         long testsPassed = 0;
         long testsFailed = 0;
         for (int i = 0; i < 5000; i++) {
-//            if (i%100 == 0) System.out.print(".");
+            try {
+            if (i%100 == 0) System.out.print(".");
 
 //            if (coll.size() == 0) System.out.println("Collection is empty!");
             ResultSet result = doQuery();
@@ -43,9 +44,10 @@ public abstract class ConsumerBase implements Callable<Boolean> {
 //                System.out.println("result is good:"+result);
             }
 
-            try {
+            if (result != null) result.close();
+
                 sleep(2);
-            } catch (InterruptedException e) {
+            } catch (Throwable e) {
                 e.printStackTrace();
             }
         }

@@ -29,8 +29,10 @@ public class CarUpdater implements Runnable {
             Car c = new Car(Car.randomCarMap(Constants.ID_CAR));
 
             ResultSet<Car> existingItems = coll.retrieve(equal(Car.ID, Constants.ID_CAR));
+            Car car = existingItems.uniqueResult();
+            existingItems.close();
             coll.update(
-                    Collections.singleton(existingItems.uniqueResult()),
+                    Collections.singleton(car),
                     Collections.singleton(c));
             try {
                 Thread.sleep(2);
