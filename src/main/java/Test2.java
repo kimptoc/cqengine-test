@@ -15,7 +15,6 @@ import com.googlecode.cqengine.resultset.ResultSet;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -26,9 +25,6 @@ import static com.googlecode.cqengine.query.QueryFactory.*;
  */
 public class Test2 {
 
-    private static String[] COLOURS = {"Red", "Blue", "Green", "Yellow","Black","White","Orange","Pink"};
-    private static String[] MAKES = {"Toyota", "Ford", "Honda", "Audi","Chrysler","Jaguar","Porsche","Merecedes","BMW"};
-    private static String[] MODELS = {"1", "2", "3", "4","5","6","7","8","9","10"};
     private static boolean loggingEnabled = true;
 
     public static void main(String[] args) {
@@ -147,12 +143,7 @@ public class Test2 {
 
     private static <T> int testCollection(IndexedCollection<T> cars, Function<Map, T> builder, Query<T> query1, int size) {
         for (int i = 0; i < 20000; i++) {
-            Map car = new HashMap();
-            addField(car, "colour", COLOURS);
-            addField(car, "make", MAKES);
-            addField(car, "model", MODELS);
-            car.put("id", i);
-            car.put("engineSize", Math.random() * 1500 + 1000);
+            Map car = Car.randomCarMap(i);
             cars.add(builder.apply(car));
         }
         log("cars created = " + cars.size());
@@ -183,14 +174,6 @@ public class Test2 {
             }
         }
         return numQueries;
-    }
-
-    private static void addField(Map car, String colour, String value) {
-        car.put(colour, value);
-    }
-
-    private static void addField(Map car, String key, String[] things) {
-        car.put(key, things[(int) (Math.random() * things.length)]);
     }
 
     private static SimpleAttribute<Map, String> getAttrib(final String attributeName) {
