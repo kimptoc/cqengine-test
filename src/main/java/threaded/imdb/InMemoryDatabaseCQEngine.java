@@ -1,7 +1,7 @@
 package threaded.imdb;
 
 import com.googlecode.cqengine.IndexedCollection;
-import com.googlecode.cqengine.TransactionalIndexedCollection;
+import com.googlecode.cqengine.TransactionalIndexedCollection2;
 import com.googlecode.cqengine.attribute.Attribute;
 import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
 import com.googlecode.cqengine.index.hash.HashIndex;
@@ -178,7 +178,7 @@ class TableConfigCQE {
         if (indexedCollection == null) {
             synchronized (this) {
                 if (indexedCollection == null) {
-                    indexedCollection = new TransactionalIndexedCollection<>(Map.class);
+                    indexedCollection = new TransactionalIndexedCollection2<>(Map.class);
                     // TODO should be able to use a UniqueIndex here, but it doesn't work
                     indexedCollection.addIndex(HashIndex.onAttribute(getAttribute(primaryKey)));
                     for (String index : lookupIndexes) {
