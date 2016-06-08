@@ -1,11 +1,6 @@
 package threaded.imdb;
 
-import com.sun.jndi.cosnaming.CNCtx;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import threaded.Constants;
-import threaded.TestUpdateBaseBase;
-import threaded.map.Consumer;
-import threaded.map.Updater;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,11 +17,6 @@ public class TestIMDB {
 
         Map m = new HashMap<>();
         m.put(Constants.KEY_FIELD, Constants.ID);
-        m.put("Size", 1);
-        m.put("Distance", 2);
-        m.put("Height", 3);
-        m.put("Width", 4);
-        m.put("Version", Constants.VERSION_GENERATOR.incrementAndGet());
 
         db.initTable("cars", Constants.KEY_FIELD);
 

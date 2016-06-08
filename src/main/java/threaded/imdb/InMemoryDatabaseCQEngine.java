@@ -5,7 +5,6 @@ import com.googlecode.cqengine.TransactionalIndexedCollection;
 import com.googlecode.cqengine.attribute.Attribute;
 import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
 import com.googlecode.cqengine.index.hash.HashIndex;
-import com.googlecode.cqengine.index.unique.UniqueIndex;
 import com.googlecode.cqengine.query.Query;
 import com.googlecode.cqengine.query.QueryFactory;
 import com.googlecode.cqengine.query.option.AttributeOrder;
@@ -25,36 +24,6 @@ public class InMemoryDatabaseCQEngine {
     private final MyLogger log = new MyLogger();
 
     private Map<String, TableConfigCQE> tableConfigMap = new HashMap<String, TableConfigCQE>();
-
-    public boolean exists(String table) {
-        return getIndexedCollection(table) != null;
-    }
-
-    public List<Map<String, Object>> getAll(String table) {
-        List<Map<String, Object>> all = new ArrayList<>();
-        ResultSet<Map> repo = null;
-        try {
-            repo = getTableConfig(table).queryCollection(all(Map.class));
-            for (Map map : repo) {
-                all.add(map);
-            }
-        } catch (Exception e) {
-            log.error(e);
-        } finally {
-            repo.close();
-        }
-        return all;
-    }
-
-    public Map get(String table, String key) {
-        TableConfigCQE config = getTableConfig(table);
-        ResultSet<Map> resultSet = config.queryCollection(equal(config.getPrimaryKeyAttrib(), key));
-        try {
-            return resultSet.uniqueResult();
-        } finally {
-            if (resultSet != null) resultSet.close();
-        }
-    }
 
     public List<Map<String, Object>> queryByField(String table, String field, String... values) {
         return queryByFieldSorted(table, field, values);
@@ -137,39 +106,6 @@ public class InMemoryDatabaseCQEngine {
         return config.put(existing, values);
     }
 
-    public boolean addAll(String table, List<Map<String,Object>> newItems) {
-        getIndexedCollection(table).addAll(newItems);
-        return true;
-    }
-
-    public Map remove(String table, String key) {
-        IndexedCollection<Map> repo = getIndexedCollection(table);
-        Map existing = get(table, key);
-        repo.remove(existing);
-        return existing;
-    }
-
-    /**
-     * @deprecated as its slow, use put/get/add/query methods
-     * @param name
-     * @return
-     */
-    public Map<String, Map<String, Object>> getTable(String name) {
-        TableConfigCQE config = tableConfigMap.get(name);
-        if (config == null) return null;
-        ResultSet<Map> repo = config.queryCollection(all(Map.class));
-        Map<String, Map<String, Object>> results;
-        try {
-            results = new HashMap<>();
-            for (Map<String, Object> row : repo) {
-                results.put((String) row.get(config.getPrimaryKey()),row);
-            }
-        } finally {
-            repo.close();
-        }
-        return results;
-    }
-
     private IndexedCollection<Map> getIndexedCollection(String name) {
         TableConfigCQE config = tableConfigMap.get(name);
         if (config == null) {
@@ -192,10 +128,6 @@ public class InMemoryDatabaseCQEngine {
         return config;
     }
 
-    public Set<String> getTableList() {
-        return tableConfigMap.keySet();
-    }
-
     public void initTable(String table, String primaryKey, String... indexFields) {
         synchronized (tableConfigMap) {
             if (!tableConfigMap.containsKey(table)) {
@@ -207,30 +139,7 @@ public class InMemoryDatabaseCQEngine {
         }
     }
 
-    public boolean addLookupIndex(String table, String indexField)
-    {
-        TableConfigCQE config = tableConfigMap.get(table);
-        if (config == null) throw new RuntimeException("Table "+table+" not found!");
-        config.addLookupIndexes(indexField);
-        return true;
-    }
-
-    public Set<String> getTableKeys(String table) {
-        TableConfigCQE config = getTableConfig(table);
-        ResultSet<Map> repo = config.queryCollection(all(Map.class));
-        // TODO concurrent access of repo...
-        Set<String> keys = new HashSet<String>();
-        for (Map<String, Object> map : repo) {
-            keys.add((String) map.get(config.getPrimaryKey()));
-        }
-        return keys;
-    }
-
     private class MyLogger {
-        public void error(Exception e) {
-            e.printStackTrace();
-        }
-
         public void error(String s) {
             System.out.println(s);
         }
