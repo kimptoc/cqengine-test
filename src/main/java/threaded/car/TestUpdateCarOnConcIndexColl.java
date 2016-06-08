@@ -1,16 +1,17 @@
+package threaded.car;
+
 import com.googlecode.cqengine.ConcurrentIndexedCollection;
 import com.googlecode.cqengine.IndexedCollection;
-
-import java.util.Map;
+import threaded.car.Car;
+import threaded.car.TestUpdateCarBase;
 
 /**
  * Created by kimptonc on 07/06/2016.
  */
-public class TestUpdateOnConcIndexColl extends TestUpdateBase {
+public class TestUpdateCarOnConcIndexColl extends TestUpdateCarBase {
 
     public static void main(String[] args) {
-        IndexedCollection<Map> ic = new ConcurrentIndexedCollection<>();
-
+        IndexedCollection<Car> ic = new ConcurrentIndexedCollection<>();
         runTheTests(ic);
     }
 

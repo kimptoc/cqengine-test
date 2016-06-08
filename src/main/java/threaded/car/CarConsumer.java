@@ -1,10 +1,10 @@
-import com.googlecode.cqengine.IndexedCollection;
-import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
-import com.googlecode.cqengine.query.option.QueryOptions;
-import com.googlecode.cqengine.resultset.ResultSet;
+package threaded.car;
 
-import java.util.Map;
-import java.util.concurrent.Callable;
+import com.googlecode.cqengine.IndexedCollection;
+import com.googlecode.cqengine.resultset.ResultSet;
+import threaded.Constants;
+import threaded.ConsumerBase;
+import threaded.car.Car;
 
 import static com.googlecode.cqengine.query.QueryFactory.equal;
 import static java.lang.Thread.sleep;
@@ -19,7 +19,7 @@ public class CarConsumer extends ConsumerBase {
         super(ic);
     }
 
-    ResultSet<Car> doQuery() {
+    public ResultSet<Car> doQuery() {
         return coll.retrieve(equal(Car.ID, Constants.ID_CAR));
     }
 }

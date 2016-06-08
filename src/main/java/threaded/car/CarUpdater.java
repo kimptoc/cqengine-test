@@ -1,11 +1,11 @@
+package threaded.car;
+
 import com.googlecode.cqengine.IndexedCollection;
-import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
-import com.googlecode.cqengine.query.option.QueryOptions;
 import com.googlecode.cqengine.resultset.ResultSet;
+import threaded.Constants;
+import threaded.car.Car;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.googlecode.cqengine.query.QueryFactory.equal;
 

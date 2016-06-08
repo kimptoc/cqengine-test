@@ -1,3 +1,5 @@
+package perf;
+
 import com.googlecode.cqengine.IndexedCollection;
 import com.googlecode.cqengine.ConcurrentIndexedCollection;
 import com.googlecode.cqengine.attribute.SimpleAttribute;
@@ -6,6 +8,7 @@ import com.googlecode.cqengine.query.Query;
 import com.googlecode.cqengine.query.option.DeduplicationStrategy;
 import com.googlecode.cqengine.query.option.QueryOptions;
 import com.googlecode.cqengine.resultset.ResultSet;
+import threaded.car.Car;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -27,10 +30,10 @@ public class Test1 {
         System.out.println("CQEngine Test - starting");
         int secondsForCreation = 2;
 
-        // test 1 - use specific Car class
+        // test 1 - use specific threaded.car.Car class
         // create indexed collection, populate index, query index
 
-        System.out.println("CQEngine Test - using Car objects");
+        System.out.println("CQEngine Test - using threaded.car.Car objects");
         IndexedCollection<Car> cars = new ConcurrentIndexedCollection<>();
 
         cars.addIndex(HashIndex.onAttribute(Car.COLOUR));

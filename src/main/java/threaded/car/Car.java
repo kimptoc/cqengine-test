@@ -1,6 +1,7 @@
+package threaded.car;
+
 import com.googlecode.cqengine.attribute.Attribute;
 import com.googlecode.cqengine.attribute.SimpleAttribute;
-import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
 import com.googlecode.cqengine.query.option.QueryOptions;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class Car {
     String make;
     String model;
 
-    Car(Map m)
+    public Car(Map m)
     {
         if (m.get("id") != null){
             id = (int) m.get("id");
@@ -48,22 +49,22 @@ public class Car {
 //    public boolean equals(Object o) {
 //        if (this == o) return true;
 //        if (o == null || getClass() != o.getClass()) return false;
-//        Car other = (Car) o;
+//        threaded.car.Car other = (threaded.car.Car) o;
 //        if (this.id != other.id) return false;
 //        if (this.version != other.version) return false;
 //        return true;
 //    }
 
-    static Attribute ID = new SimpleAttribute<Car, Integer>("id") {
+    public static Attribute ID = new SimpleAttribute<Car, Integer>("id") {
         public Integer getValue(Car car, QueryOptions queryOptions) { return car.id; }
     };
-    static Attribute COLOUR = new SimpleAttribute<Car, String>("colour") {
+    public static Attribute COLOUR = new SimpleAttribute<Car, String>("colour") {
         public String getValue(Car car, QueryOptions queryOptions) { return car.colour; }
     };
-    static Attribute MAKE = new SimpleAttribute<Car, String>("make") {
+    public static Attribute MAKE = new SimpleAttribute<Car, String>("make") {
         public String getValue(Car car, QueryOptions queryOptions) { return car.make; }
     };
-    static Attribute MODEL = new SimpleAttribute<Car, String>("model") {
+    public static Attribute MODEL = new SimpleAttribute<Car, String>("model") {
         public String getValue(Car car, QueryOptions queryOptions) { return car.model; }
     };
 

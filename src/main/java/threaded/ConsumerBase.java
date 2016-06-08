@@ -1,3 +1,5 @@
+package threaded;
+
 import com.googlecode.cqengine.IndexedCollection;
 import com.googlecode.cqengine.resultset.ResultSet;
 
@@ -15,7 +17,7 @@ public abstract class ConsumerBase implements Callable<Boolean> {
         coll = ic;
     }
 
-    abstract ResultSet doQuery();
+    public abstract ResultSet doQuery();
 
     @Override
     public Boolean call() throws Exception {
@@ -56,7 +58,7 @@ public abstract class ConsumerBase implements Callable<Boolean> {
             }
         }
 
-        System.out.println("Consumer done!");
+        System.out.println("threaded.map.Consumer done!");
         return nullEncountered;
     }
 }

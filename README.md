@@ -1,11 +1,11 @@
 Test with new MapEntity - seems that KeyMapEntity adds little value.
 But MapEntity is much better than Map - without optimising equal.
 
-11:23:35>1)CQEngine Test - using Car objects
+11:23:35>1)CQEngine Test - using threaded.car.Car objects
 11:23:35>cars created = 20000
 11:23:41>elapsed = 6272.9587ms for 20000 queries. Time per query:0.3136ms
 
-11:23:41>1)CQEngine Test - using Car objects/nullable attribs
+11:23:41>1)CQEngine Test - using threaded.car.Car objects/nullable attribs
 11:23:41>cars created = 20000
 11:23:47>elapsed = 6082.9562ms for 20000 queries. Time per query:0.3041ms
 
@@ -34,12 +34,12 @@ But MapEntity is much better than Map - without optimising equal.
 
 Test 3 - more tests, using latest map attrib code - v.slow with MapAttribs
 
-CQEngine Test2 - lots of queries - starting
-CQEngine Test - using Car objects
+CQEngine perf.Test2 - lots of queries - starting
+CQEngine Test - using threaded.car.Car objects
 cars created = 10000
 elapsed = 4182.4028ms for 10000 queries. Time per query:0.4182ms
 
-CQEngine Test - using Car objects/nullable attribs
+CQEngine Test - using threaded.car.Car objects/nullable attribs
 cars created = 10000
 elapsed = 4135.2624ms for 10000 queries. Time per query:0.4135ms
 
@@ -59,8 +59,8 @@ CQEngine Test - done
 
 
 Test 2 - not too many entries, but lots of queries
-CQEngine Test2 - lots of queries - starting
-CQEngine Test - using Car objects
+CQEngine perf.Test2 - lots of queries - starting
+CQEngine Test - using threaded.car.Car objects
 cars created = 10000
 elapsed = 28057.6352ms for 100000 queries. Time per query:0.2806ms
 CQEngine Test - using Map objects

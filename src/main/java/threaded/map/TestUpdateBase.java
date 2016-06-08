@@ -1,8 +1,12 @@
+package threaded.map;
+
 import com.googlecode.cqengine.IndexedCollection;
+import threaded.Constants;
+import threaded.TestUpdateBaseBase;
+import threaded.map.Consumer;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -30,6 +34,6 @@ public class TestUpdateBase extends TestUpdateBaseBase {
         Future<Boolean> result2 = pool.submit(new Consumer(ic));
         Future<Boolean> result3 = pool.submit(new Consumer(ic));
 
-        endOfTest(result1, result2, result3);
+        TestUpdateBaseBase.endOfTest(result1, result2, result3);
     }
 }

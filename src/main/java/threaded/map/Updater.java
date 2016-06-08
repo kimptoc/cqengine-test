@@ -1,7 +1,10 @@
+package threaded.map;
+
 import com.googlecode.cqengine.IndexedCollection;
 import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
 import com.googlecode.cqengine.query.option.QueryOptions;
 import com.googlecode.cqengine.resultset.ResultSet;
+import threaded.Constants;
 
 import java.util.Collections;
 import java.util.HashMap;

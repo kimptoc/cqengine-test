@@ -1,14 +1,15 @@
+package threaded.map;
+
 import com.googlecode.cqengine.IndexedCollection;
 import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
 import com.googlecode.cqengine.query.option.QueryOptions;
 import com.googlecode.cqengine.resultset.ResultSet;
+import threaded.Constants;
+import threaded.ConsumerBase;
 
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import static com.googlecode.cqengine.query.QueryFactory.equal;
-import static com.sun.corba.se.impl.util.RepositoryId.cache;
 import static java.lang.Thread.sleep;
 
 /**
@@ -32,7 +33,7 @@ public class Consumer extends ConsumerBase {
     }
 
     @Override
-    ResultSet doQuery() {
+    public ResultSet doQuery() {
         return coll.retrieve(equal(attribute, Constants.ID));
     }
 

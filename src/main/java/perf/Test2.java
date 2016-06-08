@@ -1,3 +1,5 @@
+package perf;
+
 import com.googlecode.cqengine.ConcurrentIndexedCollection;
 import com.googlecode.cqengine.IndexedCollection;
 import com.googlecode.cqengine.attribute.Attribute;
@@ -11,6 +13,7 @@ import com.googlecode.cqengine.query.QueryFactory;
 import com.googlecode.cqengine.query.option.DeduplicationStrategy;
 import com.googlecode.cqengine.query.option.QueryOptions;
 import com.googlecode.cqengine.resultset.ResultSet;
+import threaded.car.Car;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -28,7 +31,7 @@ public class Test2 {
     private static boolean loggingEnabled = true;
 
     public static void main(String[] args) {
-        log("CQEngine Test2 - lots of queries - starting");
+        log("CQEngine perf.Test2 - lots of queries - starting");
         int testSize;
 
         loggingEnabled = false;
@@ -36,7 +39,7 @@ public class Test2 {
         for (int j = 0; j <= warmupLoops; j++) {
             if (j == warmupLoops) loggingEnabled = true;
             {
-                logForced(j+")CQEngine Test - using Car objects");
+                logForced(j+")CQEngine Test - using threaded.car.Car objects");
                 IndexedCollection<Car> cars = new ConcurrentIndexedCollection<>();
 
                 cars.addIndex(HashIndex.onAttribute(Car.COLOUR));
@@ -46,7 +49,7 @@ public class Test2 {
                 testSize = testCollection(cars, Car::new, or(equal(Car.MAKE, "Ford"), equal(Car.COLOUR, "Red")), -1);
             }
             {
-                logForced(j+")CQEngine Test - using Car objects/nullable attribs");
+                logForced(j+")CQEngine Test - using threaded.car.Car objects/nullable attribs");
                 IndexedCollection<CarNullableAttribs> cars = new ConcurrentIndexedCollection<>();
 
                 cars.addIndex(HashIndex.onAttribute(CarNullableAttribs.COLOUR));
