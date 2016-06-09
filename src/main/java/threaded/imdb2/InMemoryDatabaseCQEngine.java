@@ -181,11 +181,14 @@ class TableConfigCQE {
         if (indexedCollection == null) {
             synchronized (this) {
                 if (indexedCollection == null) {
+                    // ConcIndexColl has the issue
                     indexedCollection = new ConcurrentIndexedCollection<>();
+                    // latest TransIndeColl is fine
 //                    indexedCollection = new TransactionalIndexedCollection<>(Map.class);
 //                    indexedCollection = new TransactionalIndexedCollection2<>(Map.class);
-                    // TODO should be able to use a UniqueIndex here, but it doesn't work
+                    // hash index gives intermittently empty resultSet
                     indexedCollection.addIndex(HashIndex.onAttribute(getAttribute(primaryKey)));
+                    // unique index works fine
 //                    indexedCollection.addIndex(UniqueIndex.onAttribute(getAttribute(primaryKey)));
                     for (String index : lookupIndexes) {
                         Attribute<Map, Comparable> attribute = getAttribute(index);

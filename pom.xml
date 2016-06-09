@@ -21,12 +21,12 @@
     </build>
 
     <!-- use a local custom build of the cqengine jar -->
-    <dependencies>
-        <dependency>
-            <groupId>com.googlecode.cqengine</groupId>
-            <artifactId>cqengine</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-    </dependencies>
+    <!--<dependencies>-->
+        <!--<dependency>-->
+            <!--<groupId>com.googlecode.cqengine</groupId>-->
+            <!--<artifactId>cqengine</artifactId>-->
+            <!--<version>2.6.0</version>-->
+        <!--</dependency>-->
+    <!--</dependencies>-->
 
 </project>
