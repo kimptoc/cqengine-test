@@ -24,12 +24,12 @@ public class TestIMDB {
 
         new Thread(new IMDBUpdater(db)).start();
 
-        ExecutorService pool = Executors.newFixedThreadPool(15);
+        ExecutorService pool = Executors.newFixedThreadPool(1);
 
         Future<Boolean> result1 = pool.submit(new IMDBConsumer(db));
-        Future<Boolean> result2 = pool.submit(new IMDBConsumer(db));
-        Future<Boolean> result3 = pool.submit(new IMDBConsumer(db));
-        Future<Boolean> result4 = pool.submit(new IMDBConsumer(db));
+//        Future<Boolean> result2 = pool.submit(new IMDBConsumer(db));
+//        Future<Boolean> result3 = pool.submit(new IMDBConsumer(db));
+//        Future<Boolean> result4 = pool.submit(new IMDBConsumer(db));
 
 //        TestUpdateBaseBase.endOfTest(result1, result2, result3);
 
